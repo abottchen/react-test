@@ -5,15 +5,17 @@ class Main extends Component {
     super(props);
     {/* Binds 'this' to the component state rather than the local variable scope */}
     this.handleChange = this.handleChange.bind(this);
-    this.state = { value: 'input text' };
   }
 
-  handleChange(e) {
-    this.setState({ value: e.target.value })
+  handleChange(event) {
+    const name = event.target.value
+    this.props.updatePlayer({
+      name: name 
+    });
   }
 
   getPlayer() {
-    return this.state.value;
+    return this.props.player.name;
   }
 
   render() {
@@ -24,7 +26,7 @@ class Main extends Component {
             <textarea
               style={{width: "100%", hieght: "100%"}}
               onChange={this.handleChange}
-              defaultValue={this.state.value}/>
+              value={this.props.player.name}/>
           </div>
           <div className="panel">
             <h3>Output</h3>

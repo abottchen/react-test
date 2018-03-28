@@ -5,6 +5,18 @@ import Main from './components/Main';
 import { base } from './firebase';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.updatePlayer = this.updatePlayer.bind(this);
+    this.state = {
+      player: { name: "Some Player" }
+    };
+  }
+
+  updatePlayer(player) {
+    this.setState({player: player});
+  }
+
   componentWillMount() {
     this.playerRef = base.syncState('player', {
         context: this,
@@ -31,7 +43,7 @@ class App extends Component {
       <div className="wrapper">
         <Header />
         <div className="workspace">
-          <Main />
+          <Main player={this.state.player} updatePlayer={this.updatePlayer}/>
         </div>
         <Footer />
       </div>
