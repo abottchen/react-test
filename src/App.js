@@ -33,12 +33,6 @@ class App extends Component {
   }
 
   render() {
-    const list = [
-      'Item 1',
-      'Item 2',
-      'Another Item',
-    ];
-
     return (
       <div className="wrapper">
         <Header />
