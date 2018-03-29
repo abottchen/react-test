@@ -2,34 +2,20 @@ import React, { Component } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Main from './components/Main';
-import { base } from './firebase';
 
 class App extends Component {
   constructor() {
     super();
-    this.updatePlayer = this.updatePlayer.bind(this);
+    this.updateGlobalState = this.updateGlobalState.bind(this);
     this.state = {
-      player: { name: "Some Player" }
+      globalState: { 
+        onBlock: "Someone" 
+      }
     };
   }
 
-  updatePlayer(player) {
-    this.setState({player: player});
-  }
-
-  componentWillMount() {
-    this.playerRef = base.syncState('player', {
-        context: this,
-        state: 'player'
-    });
-  }
-
-  componentWillUnmount() {
-    base.removeBinding(this.playerRef);
-  }
-
-  onClick() {
-    alert('Clicked');
+  updateGlobalState(globalState) {
+    this.setState({globalState: globalState});
   }
 
   render() {
@@ -37,7 +23,7 @@ class App extends Component {
       <div className="wrapper">
         <Header />
         <div className="workspace">
-          <Main player={this.state.player} updatePlayer={this.updatePlayer}/>
+          <Main globalState={this.state.globalState} updateGlobalState={this.updateGlobalState}/>
         </div>
         <Footer />
       </div>

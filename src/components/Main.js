@@ -8,32 +8,32 @@ class Main extends Component {
   }
 
   handleChange(event) {
-    const name = event.target.value
-    this.props.updatePlayer({
-      name: name 
+    const onBlock = event.target.value
+    this.props.updateGlobalState({
+      onBlock: onBlock 
     });
   }
 
-  getPlayer() {
-    return this.props.player.name;
+  getonBlock() {
+    return this.props.globalState.onBlock;
   }
 
   render() {
     return (
         <div className="main">
           <div className="panel">
-            <h3>Input</h3>
+            <h3>Update Block</h3>
             <textarea
               style={{width: "100%", hieght: "100%"}}
               onChange={this.handleChange}
-              value={this.props.player.name}/>
+              value={this.props.globalState.onBlock}/>
           </div>
           <div className="panel">
-            <h3>Output</h3>
+            <h3>On Block</h3>
             <div
               style={{width: "100%", height: "100%", fontFamily: "monospace"}}
-              className="player-output">
-                {this.getPlayer()}
+              className="onblock-output">
+                {this.getonBlock()}
               </div>
           </div>
         </div>
