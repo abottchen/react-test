@@ -7,8 +7,17 @@
 
 .player {
   border-style: ridge;
-  border-color: black;
-  background-image: linear-gradient(black,gray);
+  border-color: #222222;
+/*  background-image: linear-gradient(#000000,#333333); */
+  background-color: #111111;
+  color: lightgray;
+}
+
+.player-odd {
+  border-style: ridge;
+  border-color: #444444;
+/*  background-image: linear-gradient(#222222,#555555); */
+  background-color: #333333;
   color: lightgray;
 }
 

@@ -6,6 +6,7 @@ class PlayerList extends Component {
     super(props);
     /* Binds 'this' to the component state rather than the local variable scope */
     this.onPlayerSelect = this.onPlayerSelect.bind(this);
+    this.classflip = "player";
   }
 
   onPlayerSelect(player) {
@@ -15,7 +16,7 @@ class PlayerList extends Component {
   }
 
   render() {
-    const playerList = [
+    let playerList = [
       'Brown, Antonio',
       'Allen, Keenan',
       'Hill, Tyreek',
@@ -33,6 +34,7 @@ class PlayerList extends Component {
       'Williams, Jamaal',
       'Lewis, Dion'
     ];
+    playerList.sort()
     return (
       <div className="panel">
         <h3>Players</h3>
@@ -40,7 +42,16 @@ class PlayerList extends Component {
           <ul className="player-list">
               {
                 playerList.map((player,index) => {
-                  return <li className="player" key={ index } onClick={ this.onPlayerSelect.bind(this, player) } >{ player }</li>;
+                  this.classflip === "player" ? this.classflip = "player-odd" : this.classflip = "player";
+                  return (
+                    <li 
+                        className={ this.classflip } 
+                        key={ index } 
+                        onClick={ this.onPlayerSelect.bind(this, player) } 
+                      > 
+                      { player }
+                    </li>
+                  );
                 })
               }
           </ul>
