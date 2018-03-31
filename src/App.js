@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Main from './components/Main';
+import { base } from './base';
 
 class App extends Component {
   constructor() {
@@ -9,13 +10,23 @@ class App extends Component {
     this.updateGlobalState = this.updateGlobalState.bind(this);
     this.state = {
       globalState: { 
-        onBlock: "Someone" 
       }
     };
   }
 
   updateGlobalState(globalState) {
     this.setState({globalState: globalState});
+  }
+
+  componentWillMount() {
+    this.globalStateRef = base.syncState('globalstate', {
+      context: this,
+      state: 'globalState'
+    });
+  }
+
+  componentWillUnmount() {
+    base.removeBinding(this.globalStateRef);
   }
 
   render() {
